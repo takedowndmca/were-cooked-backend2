@@ -1,0 +1,14 @@
+[
+  {
+    "id": "d5ee5038-2c72-4e64-8d67-0c34482a515d",
+    "name": "Ali Tawfiqur Rahman",
+    "email": "ali@example.com",
+    "password": "$2b$10$1eLq0bdL6t1Na74TYD3GO.XBiIZqtb7kkpKBGxjS/HQBIJHwzWhk2"
+  },
+  {
+    "id": "eaaca31c-bd43-4325-a88f-eabca9cd4737",
+    "name": "Ali",
+    "email": "ali@gmail.com",
+    "password": "$2b$10$lzT.dMMg0/bKF6aLUJb3tuYp0tv35yPbAl2S0hu9aq6XoVrGCsQ2m"
+  }
+]
