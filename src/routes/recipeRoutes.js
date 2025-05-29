@@ -3,12 +3,12 @@ const { getAllRecipes, getRecipeById } = require('../handlers/recipeHandler');
 const routes = [
   {
     method: 'GET',
-    path: '/recipes',
+    path: '/resep',
     handler: getAllRecipes,
   },
   {
     method: 'GET',
-    path: '/recipes/{id}',
+    path: '/resep/{id}',
     handler: getRecipeById,
   }
 ];

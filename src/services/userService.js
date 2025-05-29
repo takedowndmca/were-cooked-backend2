@@ -1,34 +1,22 @@
-const fs = require('fs').promises;
-const path = require('path');
+const { getDb } = require('./db');
 const { v4: uuidv4 } = require('uuid');
 
-const filePath = path.join(__dirname, '../../users.json');
-
-const readUsers = async () => {
-  try {
-    const data = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(data || '[]');
-  } catch {
-    return [];
-  }
-};
-
 const saveUser = async (user) => {
-  const users = await readUsers();
+  const db = getDb();
   const newUser = { id: uuidv4(), ...user };
-  users.push(newUser);
-  await fs.writeFile(filePath, JSON.stringify(users, null, 2));
+  await db.collection('users').insertOne(newUser);
   return newUser;
 };
 
 const isEmailTaken = async (email) => {
-  const users = await readUsers();
-  return users.some(u => u.email === email);
+  const db = getDb();
+  const user = await db.collection('users').findOne({ email });
+  return !!user;
 };
 
 const getUserByEmail = async (email) => {
-  const users = await readUsers();
-  return users.find(u => u.email === email);
+  const db = getDb();
+  return db.collection('users').findOne({ email });
 };
 
 module.exports = { saveUser, isEmailTaken, getUserByEmail };

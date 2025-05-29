@@ -5,7 +5,11 @@ const userRoutes = require("./src/routes/userRoutes");
 const bookmarkRoutes = require("./src/routes/bookmarkRoutes");
 const recipeRoutes = require("./src/routes/recipeRoutes");
 
+const { connectToMongo } = require("./src/services/db");
+
 const init = async () => {
+  await connectToMongo();
+
   const server = Hapi.server({
     port: process.env.PORT || 3000,
     host: "localhost",
@@ -19,12 +23,12 @@ const init = async () => {
   server.route([
     ...authRoutes,
     ...userRoutes,
-    ...bookmarkRoutes, 
-    ...recipeRoutes, 
+    ...bookmarkRoutes,
+    ...recipeRoutes,
   ]);
 
   await server.start();
-  console.log(`🚀 Server running at: ${server.info.uri}`);
+  console.log(`Server running at: ${server.info.uri}`);
 };
 
 init();
